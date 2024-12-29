@@ -1,0 +1,44 @@
+# Node.js dependencies
+node_modules/
+
+# Parcel build output
+dist/
+
+# Local environment files
+.env
+.env.*   # If you use multiple .env files, e.g., .env.development
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Editor-specific files
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Cache files
+.parcel-cache/
+.cache/
+
+# Testing and coverage
+coverage/
+
+# Build tools
+*.log
+*.pid
+*.seed
+*.pid.lock
+
+# Misc
+*.swp
+*.swo
+*.tmp
+*.bak
+*.orig
