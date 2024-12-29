@@ -1,0 +1,8 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  background-color: rgb(39 39 46);
+  height: 5rem;
+  color: white;
+  padding: var(--global-padding);
+}
