@@ -6,11 +6,13 @@ import UserProvider from './components/UserProvider/UserProvider';
 
 export function App() {
   const [games, setGames] = useState([]);
+  const backendUri = process.env.REACT_APP_BACKEND_URI;
 
   useEffect(() => {
     const fetchGames = async () => {
+      console.log(backendUri);
       try {
-        const response = await fetch('http://localhost:5001/games');
+        const response = await fetch(`${backendUri}/games`);
         const data = await response.json();
         setGames(data);
       } catch (error) {
@@ -26,7 +28,7 @@ export function App() {
       <UserProvider>
         <Header />
         <Main>
-          <h1>Hello world!</h1>
+          <h1>Bored? Game!</h1>
           <ul>
             {games.map((game) => (
               <li key={game._id}>{game.title}</li>

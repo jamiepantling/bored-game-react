@@ -1,5 +1,7 @@
 # Node.js dependencies
 node_modules/
+client/node_modules/
+server/node_modules/
 
 # Parcel build output
 dist/
@@ -7,6 +9,8 @@ dist/
 # Local environment files
 .env
 .env.*   # If you use multiple .env files, e.g., .env.development
+client/.env
+server/.env
 
 # Logs
 npm-debug.log*

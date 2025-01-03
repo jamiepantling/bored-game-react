@@ -8,11 +8,11 @@ require('./config/passport');
 const Game = require('./Models/Game');
 
 const app = express();
-const PORT = process.env.PORT || 5001;
+const PORT = process.env.PORT || 5000;
 
 app.use(
   cors({
-    origin: 'http://localhost:1234',
+    origin: process.env.FRONTEND_URI,
   })
 );
 app.use(express.json());
