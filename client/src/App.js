@@ -3,6 +3,7 @@ import Header from './components/Header';
 import Main from './components/Main';
 import Footer from './components/Footer';
 import UserProvider from './components/UserProvider/UserProvider';
+import Sandbox from './components/Sandbox/Sandbox';
 
 export function App() {
   const [games, setGames] = useState([]);
@@ -33,7 +34,9 @@ export function App() {
               <li key={game._id}>{game.title}</li>
             ))}
           </ul>
+          <Sandbox />
         </Main>
+
         <Footer />
       </UserProvider>
     </>

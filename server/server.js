@@ -10,11 +10,23 @@ const Game = require('./Models/Game');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-app.use(
-  cors({
-    origin: process.env.FRONTEND_URI,
-  })
-);
+
+const corsOptions = {
+  origin: [
+    process.env.FRONTEND_URI || 'http://localhost:1234', // Your frontend
+    'https://studio.apollographql.com',                 // Apollo Studio
+  ],
+  credentials: true, // Allow cookies or authorization headers
+  exposedHeaders: ['Access-Control-Allow-Private-Network'], // Optional for visibility
+};
+
+app.use(cors(corsOptions));
+
+// Add the header explicitly for OPTIONS requests
+app.options('*', (req, res) => {
+  res.setHeader('Access-Control-Allow-Private-Network', 'true');
+  res.sendStatus(204);
+});
 app.use(express.json());
 
 const connectMongo = async () => {
@@ -47,3 +59,19 @@ app.get('/games', async (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+
+const { ApolloServer } = require('apollo-server-express');
+const typeDefs = require('./graphql/schema');
+const resolvers = require('./graphql/resolvers');
+
+// Initialize Apollo Server
+const server = new ApolloServer({ typeDefs, resolvers });
+
+const startApolloServer = async () => {
+  await server.start();
+  server.applyMiddleware({ app });
+  console.log(`GraphQL endpoint ready at http://localhost:${PORT}${server.graphqlPath}`);
+};
+
+// Start Apollo Server
+startApolloServer();
