@@ -10,23 +10,11 @@ const Game = require('./Models/Game');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-
-const corsOptions = {
-  origin: [
-    process.env.FRONTEND_URI || 'http://localhost:1234', // Your frontend
-    'https://studio.apollographql.com',                 // Apollo Studio
-  ],
-  credentials: true, // Allow cookies or authorization headers
-  exposedHeaders: ['Access-Control-Allow-Private-Network'], // Optional for visibility
-};
-
-app.use(cors(corsOptions));
-
-// Add the header explicitly for OPTIONS requests
-app.options('*', (req, res) => {
-  res.setHeader('Access-Control-Allow-Private-Network', 'true');
-  res.sendStatus(204);
-});
+app.use(
+  cors({
+    origin: process.env.FRONTEND_URI || 'http://localhost:3000',
+  })
+);
 app.use(express.json());
 
 const connectMongo = async () => {
