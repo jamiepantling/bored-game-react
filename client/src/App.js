@@ -10,7 +10,6 @@ export function App() {
 
   useEffect(() => {
     const fetchGames = async () => {
-      console.log(backendUri);
       try {
         const response = await fetch(`${backendUri}/games`);
         const data = await response.json();
