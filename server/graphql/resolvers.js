@@ -16,6 +16,20 @@ const resolvers = {
       }
     },
   },
+  Query: {
+    tags: async () => {
+      try {
+        const tags = await Tag.find().lean();
+        return tags.map((tag) => ({
+          id: tag._id.toString(),
+          content: tag.content,
+        }));
+      } catch (error) {
+        console.error('Error fetching tags:', error);
+        throw new Error('Failed to fetch tags');
+      }
+    },
+  },
 };
 
 module.exports = resolvers;

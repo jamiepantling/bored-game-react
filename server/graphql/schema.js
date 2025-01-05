@@ -5,10 +5,16 @@ const typeDefs = gql`
     id: ID!
     title: String!
     genre: String
+    tags: [Tag]
+  }
+  type Tag {
+    id: ID!
+    content: String!
   }
 
   type Query {
     games: [Game!]
+    tags: [Tag!]
   }
 `;
 
