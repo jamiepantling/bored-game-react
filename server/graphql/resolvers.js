@@ -1,4 +1,5 @@
 const Game = require('../Models/Game');
+const Tag = require('../Models/Tag');
 
 const resolvers = {
   Query: {
@@ -8,16 +9,15 @@ const resolvers = {
         return games.map((game) => ({
           id: game._id.toString(),
           title: game.title,
-          genre: game.genre || null,
+          picture: game.picture,
         }));
       } catch (error) {
         console.error('Error fetching games:', error);
         throw new Error('Failed to fetch games');
       }
     },
-  },
-  Query: {
     tags: async () => {
+      console.log('tags resolver called');
       try {
         const tags = await Tag.find().lean();
         return tags.map((tag) => ({

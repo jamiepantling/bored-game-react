@@ -4,24 +4,25 @@ import Main from './components/Main';
 import Footer from './components/Footer';
 import UserProvider from './components/UserProvider/UserProvider';
 import Sandbox from './components/Sandbox/Sandbox';
+import GamesList from './components/GamesList/GamesList';
 
 export function App() {
   const [games, setGames] = useState([]);
   const backendUri = process.env.REACT_APP_BACKEND_URI;
 
-  useEffect(() => {
-    const fetchGames = async () => {
-      try {
-        const response = await fetch(`${backendUri}/games`);
-        const data = await response.json();
-        setGames(data);
-      } catch (error) {
-        console.error('Error fetching games:', error);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchGames = async () => {
+  //     try {
+  //       const response = await fetch(`${backendUri}/games`);
+  //       const data = await response.json();
+  //       setGames(data);
+  //     } catch (error) {
+  //       console.error('Error fetching games:', error);
+  //     }
+  //   };
 
-    fetchGames();
-  }, []);
+  //   fetchGames();
+  // }, []);
 
   return (
     <>
@@ -29,11 +30,7 @@ export function App() {
         <Header />
         <Main>
           <h1>Bored? Game!</h1>
-          <ul>
-            {games.map((game) => (
-              <li key={game._id}>{game.title}</li>
-            ))}
-          </ul>
+          <GamesList />
           <Sandbox />
         </Main>
 

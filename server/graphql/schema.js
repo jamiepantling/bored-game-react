@@ -4,8 +4,9 @@ const typeDefs = gql`
   type Game {
     id: ID!
     title: String!
-    genre: String
     tags: [Tag]
+    description: String
+    picture: String
   }
   type Tag {
     id: ID!

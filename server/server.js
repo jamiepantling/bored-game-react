@@ -29,20 +29,20 @@ const connectMongo = async () => {
 
 connectMongo();
 
-app.get('/games', async (req, res) => {
-  try {
-    const games = await Game.find().lean();
-    games.forEach((game) => {
-      game._id = game._id.toString();
-    });
+// app.get('/games', async (req, res) => {
+//   try {
+//     const games = await Game.find().lean();
+//     games.forEach((game) => {
+//       game._id = game._id.toString();
+//     });
 
-    games.sort((a, b) => a.title.localeCompare(b.title));
+//     games.sort((a, b) => a.title.localeCompare(b.title));
 
-    res.json(games);
-  } catch (error) {
-    res.status(500).json({ error: 'Failed to fetch games' });
-  }
-});
+//     res.json(games);
+//   } catch (error) {
+//     res.status(500).json({ error: 'Failed to fetch games' });
+//   }
+// });
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
@@ -58,8 +58,11 @@ const server = new ApolloServer({ typeDefs, resolvers });
 const startApolloServer = async () => {
   await server.start();
   server.applyMiddleware({ app });
-  console.log(`GraphQL endpoint ready at http://localhost:${PORT}${server.graphqlPath}`);
+  console.log(
+    `GraphQL endpoint ready at http://localhost:${PORT}${server.graphqlPath}`
+  );
 };
 
 // Start Apollo Server
 startApolloServer();
+console.log(resolvers);
